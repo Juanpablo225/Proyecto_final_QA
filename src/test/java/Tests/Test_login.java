@@ -23,7 +23,7 @@ public class Test_login {
 
         driver.manage().window().maximize();
 
-        driver.get("https://parabank.parasoft.com/parabank/index.htm;jsessionid=06119915241E176AC7EBB032A6A1B809");
+        driver.get("https://parabank.parasoft.com/parabank/index.htm?ConnType=JDBC");
 
         login = new Page_login(driver);
     }
@@ -45,25 +45,33 @@ public  void login_valido() {
 
     @Test
     public  void login_usuario_invalido() {
-        login.llenar_login("juan","juan117");
-        String texto_esperada = "An internal error has occurred and has been logged.";
+        login.llenar_login("000","000");
+        String texto_esperada = "Accounts Overview";
         Assert.assertEquals(login.mensaje_usuario_erroneo(), texto_esperada);
 
     }
     @Test
     public  void login_contracena_invalida() {
-        login.llenar_login("juan117","j");
+        login.llenar_login("juan117","");
+        String texto_esperada = "Please enter a username and password.";
+        Assert.assertEquals(login.mensaje_usuario_erroneo2(), texto_esperada);
 
     }
 
     @Test
     public  void login_no_valido() {
-        login.llenar_login("juan117","juan117");
+        login.llenar_login("juan","juan");
+        String texto_esperada = "Please enter a username and password.";
+        Assert.assertEquals(login.mensaje_usuario_erroneo2(), texto_esperada);
+
     }
 
     @Test
     public  void login_sin_datos() {
-        login.llenar_login("juan117","juan117");
+        login.llenar_login("","");
+        String texto_esperada = "Please enter a username and password.";
+        Assert.assertEquals(login.mensaje_usuario_erroneo2(), texto_esperada);
+
     }
 
 /// ////////////////////////////////////////////////////////////////////////////
@@ -71,11 +79,11 @@ public  void login_valido() {
 
 
   //  cierra navegador
-    @AfterMethod
-    public static void cerrar_navegador() {
+   // @AfterMethod
+   // public static void cerrar_navegador() {
 
-        driver.quit();
+     //   driver.quit();
 
-    }
+    //}
 
 }
