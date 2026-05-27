@@ -30,6 +30,11 @@ public class Page_register {
     By Btn_register2 = By.xpath("//input[@value='Register']");
 
 
+     By mensaje_usuario_no_valido =By.xpath("//span[@id='customer.firstName.errors']");
+    By mensaje_usuario_no_valido2 =By.xpath("//span[@id='repeatedPassword.errors']");
+    By mensaje_usuario_no_valido3 =By.xpath("//p[contains(text(),'Your account was created successfully. You are now')]");
+    By mensaje_usuario_no_valido4 =By.xpath("//span[@id='customer.username.errors']");
+
 
     public  void llenar_datos(String txt_firstnam, String txt_lasnam, String txt_addres,String txt_cit ,String txt_stat, String txt_zi, String txt_phon, String txt_ss,String txt_use,String txt_passwor,String txt_confirm_passwor) {
         driver.findElement(btn_register).click();
@@ -50,5 +55,25 @@ public class Page_register {
     }
 
 
+    public String mensaje_usuario_erroneo3(){
 
+        return driver.findElement(mensaje_usuario_no_valido).getText();
+    }
+
+    public String mensaje_usuario_erroneo4(){
+
+        return driver.findElement(mensaje_usuario_no_valido2).getText();
+    }
+
+
+    public String mensaje_usuario_erroneo5(){
+
+        return driver.findElement(mensaje_usuario_no_valido3).getText();
+
+    }
+
+    public String mensaje_usuario_erroneo6(){
+
+        return driver.findElement(mensaje_usuario_no_valido4).getText();
+    }
 }

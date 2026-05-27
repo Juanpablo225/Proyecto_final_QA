@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 public class Test_register {
     static WebDriver driver;
     static Page_login login;
@@ -33,14 +34,17 @@ public class Test_register {
 
     @Test
     public void crear_usuario_exitoso() {
-        register.llenar_datos("juan","pablo","manzana","tj","tj","123","6647177273","123","juan225","juan225","juan225");
-
+        register.llenar_datos("juan","pablo","manzana","tj","tj","123","6647177273","123","juan400","juan225","juan225");
+        String texto_esperada ="Your account was created successfully. You are now logged in.";
+        Assert.assertEquals(register.mensaje_usuario_erroneo5(), texto_esperada);
     }
 
 
     @Test
     public void crear_usuario_campos_vacios() {
         register.llenar_datos("","","","","","","","","","","");
+        String texto_esperada = "First name is required.";
+        Assert.assertEquals(register.mensaje_usuario_erroneo3(), texto_esperada);
 
     }
 
@@ -48,23 +52,29 @@ public class Test_register {
     @Test
     public void crear_usuario_contrasenas_no_coincidentes() {
         register.llenar_datos("juan","pablo","manzana","tj","tj","123","6647177273","123","juan117","juan","juan225");
+        String texto_esperada = "Passwords did not match.";
+        Assert.assertEquals(register.mensaje_usuario_erroneo4(), texto_esperada);
+
 
     }
 
     @Test
     public void crear_usuario_existente() {
-        register.llenar_datos("juan","pablo","manzana","tj","tj","123","6647177273","123","juan117","juan117","juan117");
 
+
+        register.llenar_datos("juan","pablo","manzana","tj","tj","123","6647177273","123","juan400","juan117","juan117");
+        String texto_esperada ="This username already exists.";
+        Assert.assertEquals(register.mensaje_usuario_erroneo6(), texto_esperada);
     }
 
 
 
 
     //cierra navegador
-    //  @AfterMethod
-    //  public static void cerrar_navegador() {
+     @AfterMethod
+      public static void cerrar_navegador() {
 
-    //    driver.quit();
+        driver.quit();
 
-    //  }
+      }
 }
