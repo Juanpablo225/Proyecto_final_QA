@@ -79,11 +79,11 @@ public  void login_valido() {
 
 
   //  cierra navegador
-   // @AfterMethod
-   // public static void cerrar_navegador() {
+    @AfterMethod
+    public static void cerrar_navegador() {
 
-     //   driver.quit();
+        driver.quit();
 
-    //}
+    }
 
 }
